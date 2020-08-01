@@ -9,8 +9,11 @@ onready var interactibles := []
 
 export var max_hp := 20.0
 export var max_sp := 20.0
-onready var hp := max_hp
-onready var sp := max_sp
+onready var hp := 15.0
+onready var sp := 0.0
+
+onready var sp_reset_time := 1.0
+onready var sp_reset_timer := 0.0
 
 onready var potions_hp := 1
 
@@ -50,6 +53,10 @@ func _physics_process(dt: float) -> void:
   poll_movement()
 
 func _process(dt: float) -> void:
+  if sp_reset_timer <= 0.0 && sp < max_sp:
+    sp = min(max_sp, sp+dt*10)
+  else:
+    sp_reset_timer -= dt
   emit_signal("update_ui",self)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -76,6 +83,10 @@ func _unhandled_input(event: InputEvent) -> void:
       #  print(translation/5)
       KEY_E:
         interact()
+      KEY_Q:
+        drink_potion_hp()
+      KEY_SPACE:
+        attack()
       _:
         pass
 
@@ -88,3 +99,15 @@ func area_exited(obj: Node) -> void:
 func interact() -> void:
   if !interactibles.empty():
     dm.interact(self, interactibles[0])
+
+func drink_potion_hp() -> bool:
+  if potions_hp > 0.0 && hp < max_hp:
+    potions_hp -= 1
+    hp = min(max_hp, hp+5.0)
+    return true
+  else:
+    return false
+
+func attack() -> void:
+  sp_reset_timer = sp_reset_time
+  sp = max(0.0, sp-5.0)

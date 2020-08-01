@@ -38,7 +38,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="LOWREZ"
+config/name="Dark Ring"
 config/description="A Mysterious Fortress has appeared all of a sudden at the edge of the lands, housing inside it something powerful and dangerous: The Reliquary of Chaos. An Exalted Warlock has obtained and opened the Reliquary, which contains powerful artifacts that can tip the Balance and spell destruction for the world. He and his followers must be stopped."
 run/main_scene="res://Scenes/Game.tscn"
 config/icon="res://Assets/bg_plchldr.png"
