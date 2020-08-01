@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Scripts/Area.gd" type="Script" id=2]
+
+[sub_resource type="SphereMesh" id=1]
+
+[sub_resource type="SpatialMaterial" id=2]
+albedo_color = Color( 0.784314, 0, 0, 1 )
+
+[sub_resource type="CylinderMesh" id=3]
+
+[sub_resource type="SpatialMaterial" id=4]
+albedo_color = Color( 0.784314, 0, 0, 1 )
+
+[sub_resource type="SpatialMaterial" id=5]
+albedo_color = Color( 0.501961, 0.337255, 0.0235294, 1 )
+
+[sub_resource type="CylinderShape" id=6]
+
+[node name="Potion" type="Spatial" groups=[
+"potion_hp",
+]]
+
+[node name="Bottle" type="Spatial" parent="."]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -2, 0 )
+
+[node name="Bottom" type="MeshInstance" parent="Bottle"]
+mesh = SubResource( 1 )
+material/0 = SubResource( 2 )
+
+[node name="Neck" type="MeshInstance" parent="Bottle"]
+transform = Transform( 0.3, 0, 0, 0, 0.5, 0, 0, 0, 0.3, 0, 1.39601, 0 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 4 )
+
+[node name="Quark" type="MeshInstance" parent="Bottle"]
+transform = Transform( 0.35, 0, 0, 0, 0.25, 0, 0, 0, 0.35, 0, 2.03034, 0 )
+mesh = SubResource( 3 )
+material/0 = SubResource( 5 )
+
+[node name="Area" type="Area" parent="." groups=[
+"interactive",
+]]
+script = ExtResource( 2 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0 )
+shape = SubResource( 6 )
+[connection signal="body_entered" from="Area" to="Area" method="_on_Area_body_entered"]
+[connection signal="body_exited" from="Area" to="Area" method="_on_Area_body_exited"]

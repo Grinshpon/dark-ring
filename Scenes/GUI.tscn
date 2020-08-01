@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/FPS.gd" type="Script" id=1]
+
+[node name="GUI" type="CanvasLayer"]
+
+[node name="FPS" type="Label" parent="."]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 45.0
+margin_bottom = 19.0
+rect_scale = Vector2( 1.5, 1.5 )
+custom_colors/font_color = Color( 0.262745, 0.941176, 0.207843, 1 )
+custom_colors/font_color_shadow = Color( 0.0392157, 0.282353, 0.0196078, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
