@@ -15,6 +15,9 @@ onready var sp := 0.0
 onready var sp_reset_time := 1.0
 onready var sp_reset_timer := 0.0
 
+onready var atk_speed := 1.0/3.0
+onready var atk_timer := 0.0
+
 onready var potions_hp := 1
 
 onready var control := {
@@ -57,6 +60,8 @@ func _process(dt: float) -> void:
     sp = min(max_sp, sp+dt*10)
   else:
     sp_reset_timer -= dt
+  if atk_timer > 0.0:
+    atk_timer -= dt
   emit_signal("update_ui",self)
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -109,5 +114,7 @@ func drink_potion_hp() -> bool:
     return false
 
 func attack() -> void:
-  sp_reset_timer = sp_reset_time
-  sp = max(0.0, sp-5.0)
+  if sp > 0.0 && atk_timer <= 0.0:
+    sp_reset_timer = sp_reset_time
+    atk_timer = atk_speed
+    sp = max(0.0, sp-5.0)

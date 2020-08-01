@@ -18,7 +18,7 @@ class Room:
     self.height = h
 
 func rand_veci() -> Vector2:
-  return Vector2(randi()%width, randi()%height)
+  return Vector2(randi()%(width-2)+1, randi()%(height-2)+1)
 
 func mget(m: Array, x: int, y: int) -> int:
   return m[y][x]

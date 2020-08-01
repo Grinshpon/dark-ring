@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=2]
+
+[sub_resource type="CylinderMesh" id=1]
+
+[sub_resource type="CylinderMesh" id=2]
+
+[sub_resource type="PrismMesh" id=3]
+size = Vector3( 6, 6, 0.5 )
+
+[sub_resource type="CapsuleShape" id=4]
+
+[node name="Sword" type="Spatial"]
+
+[node name="SwordMesh" type="Spatial" parent="."]
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0 )
+
+[node name="Hilt" type="MeshInstance" parent="SwordMesh"]
+transform = Transform( 1.8, 0, 0, 0, 8, 0, 0, 0, 1, 0, 0, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Crossguard" type="MeshInstance" parent="SwordMesh"]
+transform = Transform( -3.25841e-07, -8, 0, -3.25841e-07, 2.12345e-13, -1, 2, -1.30337e-06, -1.62921e-07, 0, 7.80006, 0 )
+mesh = SubResource( 1 )
+material/0 = null
+
+[node name="Pommel" type="MeshInstance" parent="SwordMesh"]
+transform = Transform( 3, 0, 0, 0, -1.62921e-07, -3, 0, 1, -4.88762e-07, 0, -9.97329, 0 )
+mesh = SubResource( 2 )
+material/0 = null
+
+[node name="Blade" type="MeshInstance" parent="SwordMesh"]
+transform = Transform( 1, 0, 0, 0, 10, 0, 0, 0, 1, 0, 38.3998, 0 )
+mesh = SubResource( 3 )
+material/0 = null
+
+[node name="Area" type="Area" parent="."]
+
+[node name="CollisionShape" type="CollisionShape" parent="Area"]
+transform = Transform( 0.5, 0, 0, 0, -2.18557e-08, -3, 0, 0.5, -1.31134e-07, 0, 2.80918, 0 )
+shape = SubResource( 4 )
