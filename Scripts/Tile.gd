@@ -1,6 +1,13 @@
 class_name Tile
 extends Spatial
 
+var walls := [
+  preload("res://Scenes/Tile/EastWall.tscn"),
+  preload("res://Scenes/Tile/SouthWall.tscn"),
+  preload("res://Scenes/Tile/WestWall.tscn"),
+  preload("res://Scenes/Tile/NorthWall.tscn"),
+]
+
 var bit := [
   1 << 0,
   1 << 1,
@@ -20,17 +27,10 @@ func init(o: Vector3, n: int) -> void:
 
 func _ready() -> void:
   set_translation(position)
-  var walls := [
-    $EastWall,
-    $SouthWall,
-    $WestWall,
-    $NorthWall,
-  ]
   for i in range(0,4):
-    if is_set(mask,i):
+    if !is_set(mask,i):
       #print(bit[i])
-      if is_instance_valid(walls[i]):
-        walls[i].queue_free()
+      add_child(walls[i].instance())
 
 func _process(dt: float) -> void:
   pass

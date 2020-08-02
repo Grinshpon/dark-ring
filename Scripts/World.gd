@@ -20,18 +20,15 @@ func _ready() -> void:
 
 func make_level() -> void:
   if !tiles.empty():
+    print("unloading current level...")
     for t in tiles:
       t.queue_free()
     tiles.clear()
  
+  print("generating new layout...")
   level.gen_map()
 
-  # Debug
-  level.print_map()
-  print(level.start)
-  print(level.end)
-  # --
-
+  print("loading level...")
   for z in range(level.map.size()):
     for x in range(level.map.size()):
       if level.mget(level.map,x,z) > 0:
@@ -50,7 +47,17 @@ func make_level() -> void:
   add_child(key)
   key.set_translation(player.translation)
   emit_signal("set_start_end",level.start,level.end)
+  print("loading complete")
 
 func _on_next_level(lvl: int) -> void:
   print("entering level ", lvl)
   make_level()
+ 
+func debug_print_map() -> void:
+  level.print_map()
+  print(level.start)
+  print(level.end)
+
+func _input(event: InputEvent) -> void:
+  if event is InputEventKey && event.pressed && event.scancode == KEY_P: 
+    debug_print_map()

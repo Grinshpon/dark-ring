@@ -1,5 +1,7 @@
 # Dark Ring - LOWREZ 2020
 
+https://cardinal-studio.itch.io/dark-ring
+
 A first person rogue-lite in which you descend into the dungeons in search of the Dark Ring,
 said to contain the power to cure the plague of undeath that haunts your land.
 
@@ -19,6 +21,6 @@ E to interact.
 
 Q to drink health potion.
 
-F1 to toggle fullscreen on/off
+F1 to toggle fullscreen on/off.
 
 <!--- Up/Down arrow keys to change what to interact with (if items are overlapping). --->
